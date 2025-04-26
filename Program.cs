@@ -182,7 +182,7 @@ for (int i = 0; i < TotalPages; i++)
         //Checks if any instance of the number is already in the frames 
         if (FrameList.Contains(i))
         {
-            List<int> FrameCheck = FrameList;
+            List<int> FrameCheck = new List<int>(FrameList);
             int ReplacedValue;
 
             for (int x = i; x < TotalPages; x++)

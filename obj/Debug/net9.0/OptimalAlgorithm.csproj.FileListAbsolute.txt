@@ -12,3 +12,4 @@ D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\refint\OptimalAlg
 D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.pdb
 D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.genruntimeconfig.cache
 D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\ref\OptimalAlgorithm.dll
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.sourcelink.json
