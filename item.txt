@@ -1,0 +1,17 @@
+optimal algorithm sequence
+
+-checks if the cell is empty
+-adds it in the sequence if so
+-when it is full, check if the number is contained in the array
+-if it is available, then go to the next
+-if not, then check the next algorithms which page is not used in the future
+-replace that shit
+-if no pages that can be used in the future, go fifo
+
+
+issues encountered
+-familiarization of c#
+-the system only recognizing one string in the regex counter
+-when declaring a placeholder object, add new or else nahahawak yung original graph
+-application of fifo at the end
+-used regex to make page-reference string... so had to do the random shit

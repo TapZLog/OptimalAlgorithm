@@ -1,0 +1,111 @@
+//Importing any neccessary external processes 
+using System.Text.RegularExpressions;
+
+//Declaring and initiating variables and objects for the project.
+int PageFault = 0;
+int PagesNum;
+int FrameNum;
+
+int[] PageReference;
+int[] FramesDisplay;
+Queue<int> Frames;
+
+Console.WriteLine("FIFO Algorithm");
+
+//Asking for the pages in the program
+Console.WriteLine("Please enter your page-reference string");
+Console.WriteLine("Note that the program must include at least 20 page references (any number ranging from 0-9): ");
+String Pages = "" + Console.ReadLine();
+
+//Filtering only digits using RegEx
+String ConvertedPages = Regex.Replace(Pages, @"\D","");
+PagesNum = ConvertedPages.ToString().Length;
+
+//Asking for the number of frames allocated in the program. 
+Console.WriteLine("Enter the amount of frames in the program: ");
+FrameNum = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("The algorithm will have " + FrameNum + " frames");
+
+//Error checking in case the page references are not at least 20
+if (PagesNum < 5) {
+    Console.WriteLine("Error Detected! Please use at least 20 digits for the page reference");
+} else {
+    //Initiates the arrays declared at the start of the program
+    PageReference = new int[PagesNum];
+    Frames = new Queue<int>();
+    FramesDisplay = new int[FrameNum];
+    int instance = 0;
+
+    
+    //Temporarily changes each array to -1 as a way to remove any 0 that doesn't exist yet
+    Console.Write("F     | ");
+    for (int i = 0; i < FrameNum; i++) {
+        FramesDisplay[i] = -1;
+        Console.Write("Frame " + (i+1) + " | ");
+    }
+    Console.WriteLine("Fault? |");
+    Console.Write("======|");
+    for (int i = 0; i < FrameNum; i++) {
+        Console.Write("=========|");
+    }
+    Console.WriteLine("========|");
+
+    //Transferring the pages string into an array
+    for (int i = 0; i < PagesNum; i++) {
+        PageReference[i] = ConvertedPages[i] - '0';
+    }
+
+    //FIFO Algorithm
+    foreach (int i in PageReference) {
+        bool fault = false;
+
+        //Checks if the frames can hold an instance
+        if (Frames.Count < FrameNum) {
+            
+            //Check if the instance already exists in the queue
+            if(!Frames.Contains(i)) {
+                Frames.Enqueue(i); //Pushes page into the queue
+                FramesDisplay[Frames.ToArray().ToList().IndexOf(i)] = i; //Displays the current frames in the array
+                PageFault++; //Increments the PageFault
+                fault = true;
+            }
+        } 
+        //If the set is full then FIFO Algorithm
+        else {
+            //Check if the instance doesnt exist in any frame
+            if(!Frames.Contains(i)) {
+                int val = Frames.Peek(); //Returns the current page to be replaced
+                FramesDisplay[FramesDisplay.ToArray().ToList().IndexOf(val)] = i; //Replaces the oldest page into the new page in the display
+                Frames.Dequeue(); //Removes the current page in the internal queue
+                Frames.Enqueue(i); //Adds the queue to the internal queue
+                PageFault++; //Increments the PageFault
+                fault = true;
+            }
+        }
+
+        instance++;
+        Console.Write(instance);
+        
+        for (int j = instance.ToString().Length - 1; j <= 3; j++) {
+            Console.Write(" ");
+        }
+        Console.Write(" |");
+        
+        //Used in the Display of each frame
+        foreach(int x in FramesDisplay) {
+            if (x >= 0) {
+                Console.Write("    " + x + "    |");
+            } else {
+                Console.Write("         |");
+            }
+        }
+        Console.Write(" " + fault);
+        if (fault) {
+            Console.WriteLine("   |");
+        } else {
+            Console.WriteLine("  |");
+        }
+    }
+}
+
+Console.WriteLine("Total Page Faults: " + PageFault); //Displays the Total Number of Page Faults

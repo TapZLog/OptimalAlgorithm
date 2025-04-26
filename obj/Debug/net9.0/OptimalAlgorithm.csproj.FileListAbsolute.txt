@@ -1,0 +1,14 @@
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\bin\Debug\net9.0\OptimalAlgorithm.exe
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\bin\Debug\net9.0\OptimalAlgorithm.deps.json
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\bin\Debug\net9.0\OptimalAlgorithm.runtimeconfig.json
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\bin\Debug\net9.0\OptimalAlgorithm.dll
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\bin\Debug\net9.0\OptimalAlgorithm.pdb
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.GeneratedMSBuildEditorConfig.editorconfig
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.AssemblyInfoInputs.cache
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.AssemblyInfo.cs
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.csproj.CoreCompileInputs.cache
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.dll
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\refint\OptimalAlgorithm.dll
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.pdb
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\OptimalAlgorithm.genruntimeconfig.cache
+D:\Clde\Optimal Algorithm OS\OptimalAlgorithm\obj\Debug\net9.0\ref\OptimalAlgorithm.dll
