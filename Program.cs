@@ -1,4 +1,5 @@
-﻿//Importing any external features into the program
+﻿
+//Importing any external features into the program
 using System.Globalization;
 using System.Runtime.ExceptionServices;
 using System.Security.Cryptography.X509Certificates;
@@ -16,7 +17,7 @@ bool ValidLength = false; //Checks if the manually inputted value is at least 20
 
 int[] PageReference; //List of the page reference for the algorithm
 List<int> FrameList; //List used in determining whether the system has any array present
-Queue<int> FIFOOrder; //Used in FIFO order once the system has no future refeences for optimal algorithm
+List<int> FIFOOrder; //Used in FIFO order once the system has no future refeences for optimal algorithm
 
 //Credits
 Console.WriteLine("Optimal Algorithm");
@@ -79,7 +80,7 @@ if (inputType)
         //For converting the inputted string into the total amount of pages
         ConvertedPages = Regex.Replace(pages, @"\D", "");
         TotalPages = ConvertedPages.Length;
-        if (TotalPages >= 20)
+        if (TotalPages >= 5)
         {
             ValidLength = true;
         }
@@ -93,7 +94,7 @@ if (inputType)
     PageReference = new int[TotalPages];
     for (int i = 0; i < TotalPages; i++)
     {
-        PageReference[i] = -'0';
+        PageReference[i] = ConvertedPages[i] - '0';
     }
 
 }
@@ -103,11 +104,16 @@ else
     PageReference = new int[20];
     Random random = new Random();
 
+    Console.Write("The Generated Page Reference is ");
     for (int i = 0; i < TotalPages; i++)
     {
         PageReference[i] = random.Next(0, 10);
-        Console.Write(PageReference[i]);
+        if (i < (TotalPages - 1))
+        {
+            Console.Write(PageReference[i] + ", ");
+        }
     }
+    Console.WriteLine();
 }
 
 //Determining the amount of frames
@@ -139,12 +145,12 @@ do
 } while (inputFrame);
 
 //Initiates the arrays declared at the start of the program
-FIFOOrder = new Queue<int>();
+FIFOOrder = new List<int>();
 FrameList = new List<int>();
 
 int instance = 0;
 
-//Temporarily changes each array to -1 as a way to remove any 0 that doesn't exist yet
+//Used for the aesthetic of the table
 Console.Write("F     | ");
 for (int i = 0; i < TotalFrames; i++)
 {
@@ -172,6 +178,7 @@ for (int i = 0; i < TotalPages; i++)
         if (!FrameList.Contains(num))
         {
             FrameList.Add(num);
+            FIFOOrder.Add(num);
             PageFaults++;
             fault = true;
         }
@@ -180,7 +187,7 @@ for (int i = 0; i < TotalPages; i++)
     {
 
         //Checks if any instance of the number is already in the frames 
-        if (FrameList.Contains(i))
+        if (!FrameList.Contains(num))
         {
             List<int> FrameCheck = new List<int>(FrameList);
             int ReplacedValue;
@@ -191,14 +198,29 @@ for (int i = 0; i < TotalPages; i++)
                 if (FrameCheck.Contains(y))
                 {
                     FrameCheck.Remove(y);
-                }
-                if (FrameCheck.Count == 1)
-                {
-                    ReplacedValue = FrameCheck.FirstOrDefault();
-                    PageFaults++;
-                    fault = true;
-                    break;
-                }
+                    if (FrameCheck.Count == 1)
+                    {
+                        ReplacedValue = FrameCheck.FirstOrDefault();
+                        int index = FrameList.IndexOf(ReplacedValue);
+                        FIFOOrder.Add(num);
+                        FIFOOrder.Remove(ReplacedValue);
+                        FrameList.Remove(ReplacedValue);
+                        FrameList.Insert(index, num);
+                        PageFaults++;
+                        fault = true;
+                        break;
+                    }
+                } 
+            } if (FrameCheck.Count > 1) {
+
+                int val = FIFOOrder.First();
+                int index = FrameList.IndexOf(val);
+                FrameList.Remove(val);
+                FrameList.Insert(index, num);
+                FIFOOrder.Add(num);
+                FIFOOrder.Remove(val);
+                PageFaults++;
+                fault = true;
             }
         }
     }
@@ -212,9 +234,17 @@ for (int i = 0; i < TotalPages; i++)
     }
     Console.Write(" |");
 
+    // Console.Write("fifo:"); foreach (int gg in FIFOOrder) {Console.Write(gg.ToString());} Console.WriteLine("");
+
     //Used in the Display of each frame
-    foreach (int x in FrameList)
+    for (int c = 0; c < TotalFrames; c++)
     {
+        int x = -1;
+        if (FrameList.Count > c)
+        {
+            x = FrameList[c];
+        }
+
         if (x >= 0)
         {
             Console.Write("    " + x + "    |");
@@ -234,3 +264,6 @@ for (int i = 0; i < TotalPages; i++)
         Console.WriteLine("  |");
     }
 }
+
+//Used in the display of the number of page faults
+Console.WriteLine("Total Amount of Page Faults: " + PageFaults);
