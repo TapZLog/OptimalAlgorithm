@@ -11,7 +11,6 @@ optimal algorithm sequence
 
 issues encountered
 -familiarization of c#
--the system only recognizing one string in the regex counter
 -when declaring a placeholder object, add new or else nahahawak yung original graph
 -application of fifo at the end
 -used regex to make page-reference string... so had to do the random shit

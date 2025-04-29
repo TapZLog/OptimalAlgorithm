@@ -10,11 +10,6 @@ int TotalFrames = 0; //Total amount of frames in the algorithm
 int TotalPages; //Total amount of pages in the algorithm
 int PageFaults = 0; //Total amount of page faults in the algorithm
 
-String input; //Used for determining the input mode of the system
-String pages; //Used for inputting the page reference should the user go for manual input mode
-String ConvertedPages; //Used for the filtering of non-digit characters
-bool ValidLength = false; //Checks if the manually inputted value is at least 20 digits
-
 int[] PageReference; //List of the page reference for the algorithm
 List<int> FrameList; //List used in determining whether the system has any array present
 List<int> FIFOOrder; //Used in FIFO order once the system has no future refeences for optimal algorithm
@@ -26,95 +21,20 @@ Console.WriteLine("Created for Case Study for Operating Systems (OS)");
 Console.WriteLine("Submitted to Arielle Joy Barcelona");
 Console.WriteLine("==================================================");
 
-bool inputMode = true;
-bool inputType = false;
 bool inputFrame = true;
 
-//Choose the mode whether the page reference is random or preset inputted
-do
-{
-    input = "0";
-
-    Console.WriteLine("Please Enter the Mode in which you are entering: ");
-    Console.WriteLine("1: Manual Input");
-    Console.WriteLine("2: Automatic Input");
-    Console.WriteLine("3: Help");
-    Console.WriteLine("==================================================");
-    input = "" + Console.ReadLine();
-
-    //Determines if the current mode is manual input or automatic input
-    switch (input)
-    {
-        case "1":
-            Console.WriteLine("You have selected manual input mode");
-            Console.WriteLine("==================================================");
-            inputType = true;
-            inputMode = false;
-            break;
-        case "2":
-            Console.WriteLine("You have selected automatic input mode");
-            Console.WriteLine("==================================================");
-            inputType = false;
-            inputMode = false;
-            break;
-        case "3":
-            Console.WriteLine("Manual Input - Allows the user to input their selected page reference in the console. Filtered using RegEx");
-            Console.WriteLine("Automatic Input - The system will automatically add random values for the page reference");
-            Console.WriteLine("==================================================");
-            break;
-        default:
-            Console.WriteLine("Please only input from 1-3");
-            Console.WriteLine("==================================================");
-            break;
-    }
-} while (inputMode);
-
 //Generation of the Page Reference
-if (inputType)
+TotalPages = 20;
+PageReference = new int[20];
+Random random = new Random();
+
+for (int i = 0; i < TotalPages; i++)
 {
-    do
-    {
-        //Manual Input Mode
-        Console.WriteLine("Please enter page reference as a string. it must include at least 20 digits. Note that non-digit characters will be ignored in the string.");
-        pages = "" + Console.ReadLine();
-        //For converting the inputted string into the total amount of pages
-        ConvertedPages = Regex.Replace(pages, @"\D", "");
-        TotalPages = ConvertedPages.Length;
-        if (TotalPages >= 5)
-        {
-            ValidLength = true;
-        }
-        else
-        {
-            Console.WriteLine("Error. The length of the pages must be at least 20 digits");
-        }
-    } while (!ValidLength);
-
-    //Application of the converted string into a page reference array
-    PageReference = new int[TotalPages];
-    for (int i = 0; i < TotalPages; i++)
-    {
-        PageReference[i] = ConvertedPages[i] - '0';
-    }
-
+    PageReference[i] = random.Next(0, 10);
 }
-else
-{
-    TotalPages = 20;
-    PageReference = new int[20];
-    Random random = new Random();
-
-    Console.Write("The Generated Page Reference is ");
-    for (int i = 0; i < TotalPages; i++)
-    {
-        PageReference[i] = random.Next(0, 10);
-        if (i < (TotalPages - 1))
-        {
-            Console.Write(PageReference[i] + ", ");
-        }
-    }
-    Console.WriteLine();
-}
+Console.Write("The Generated Page Reference is ");
+Console.WriteLine("[{0}]", string.Join(", ", PageReference));
+Console.WriteLine("==================================================");
 
 //Determining the amount of frames
 do
@@ -156,13 +76,13 @@ for (int i = 0; i < TotalFrames; i++)
 {
     Console.Write("Frame " + (i + 1) + " | ");
 }
-Console.WriteLine("Fault? |");
+Console.WriteLine("Fault |");
 Console.Write("======|");
 for (int i = 0; i < TotalFrames; i++)
 {
     Console.Write("=========|");
 }
-Console.WriteLine("========|");
+Console.WriteLine("=======|");
 
 //Initiating the Optimal Algorithm
 for (int i = 0; i < TotalPages; i++)
@@ -190,15 +110,15 @@ for (int i = 0; i < TotalPages; i++)
         if (!FrameList.Contains(num))
         {
             List<int> FrameCheck = new List<int>(FrameList);
-            int ReplacedValue;
+            int ReplacedValue; //Used in determining the the value that will be used later, thus it is to be replaced
 
             for (int x = i; x < TotalPages; x++)
             {
                 int y = PageReference[x];
-                if (FrameCheck.Contains(y))
+                if (FrameCheck.Contains(y)) //Check if the current page reference being checked exists in the frames
                 {
-                    FrameCheck.Remove(y);
-                    if (FrameCheck.Count == 1)
+                    FrameCheck.Remove(y); //This works by creating a list and then removing the next instance of any given page until there is one left
+                    if (FrameCheck.Count == 1) //Replacement algorithm for the frames
                     {
                         ReplacedValue = FrameCheck.FirstOrDefault();
                         int index = FrameList.IndexOf(ReplacedValue);
@@ -210,8 +130,10 @@ for (int i = 0; i < TotalPages; i++)
                         fault = true;
                         break;
                     }
-                } 
-            } if (FrameCheck.Count > 1) {
+                }
+            }
+            if (FrameCheck.Count > 1) //Checks if FIFO algorithm should be used
+            {
 
                 int val = FIFOOrder.First();
                 int index = FrameList.IndexOf(val);
@@ -234,8 +156,6 @@ for (int i = 0; i < TotalPages; i++)
     }
     Console.Write(" |");
 
-    // Console.Write("fifo:"); foreach (int gg in FIFOOrder) {Console.Write(gg.ToString());} Console.WriteLine("");
-
     //Used in the Display of each frame
     for (int c = 0; c < TotalFrames; c++)
     {
@@ -254,16 +174,16 @@ for (int i = 0; i < TotalPages; i++)
             Console.Write("         |");
         }
     }
-    Console.Write(" " + fault);
-    if (fault)
+
+    if (fault) 
     {
-        Console.WriteLine("   |");
-    }
-    else
+        Console.WriteLine("   *   |");
+    } else 
     {
-        Console.WriteLine("  |");
+        Console.WriteLine("       |");
     }
 }
 
 //Used in the display of the number of page faults
+Console.WriteLine("==================================================");
 Console.WriteLine("Total Amount of Page Faults: " + PageFaults);

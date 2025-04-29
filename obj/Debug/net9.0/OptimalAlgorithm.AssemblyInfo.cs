@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OptimalAlgorithm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+288a18d69d5349c53de74ddb94a85858b76d94d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40b05522c4f144f36aa0cc0e582d1cda0d5c5916")]
 [assembly: System.Reflection.AssemblyProductAttribute("OptimalAlgorithm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OptimalAlgorithm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
