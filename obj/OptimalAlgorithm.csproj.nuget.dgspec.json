@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Clde\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj": {}
+    "C:\\Users\\justi\\Desktop\\Back Ups\\Code\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj": {}
   },
   "projects": {
-    "D:\\Clde\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj": {
+    "C:\\Users\\justi\\Desktop\\Back Ups\\Code\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Clde\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj",
+        "projectUniqueName": "C:\\Users\\justi\\Desktop\\Back Ups\\Code\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj",
         "projectName": "OptimalAlgorithm",
-        "projectPath": "D:\\Clde\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj",
+        "projectPath": "C:\\Users\\justi\\Desktop\\Back Ups\\Code\\Optimal Algorithm OS\\OptimalAlgorithm\\OptimalAlgorithm.csproj",
         "packagesPath": "C:\\Users\\justi\\.nuget\\packages\\",
-        "outputPath": "D:\\Clde\\Optimal Algorithm OS\\OptimalAlgorithm\\obj\\",
+        "outputPath": "C:\\Users\\justi\\Desktop\\Back Ups\\Code\\Optimal Algorithm OS\\OptimalAlgorithm\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\justi\\AppData\\Roaming\\NuGet\\NuGet.Config"
