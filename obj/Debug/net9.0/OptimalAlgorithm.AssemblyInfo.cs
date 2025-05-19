@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OptimalAlgorithm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93df2402c579c08f92b703dafb7c5dfdd73a003e")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+288a18d69d5349c53de74ddb94a85858b76d94d7")]
+>>>>>>> parent of 93df240 (ver beta)
 [assembly: System.Reflection.AssemblyProductAttribute("OptimalAlgorithm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OptimalAlgorithm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,7 +10,15 @@ optimal algorithm sequence
 
 
 issues encountered
+<<<<<<< HEAD
 -familiarization of c# > yt and google
 -when declaring a placeholder object, nahahawak yung original graph > adding new to FrameCheck
 -application of fifo at the end > converted it to list instead of queue and added check after the for loop
 -usage of float points
+=======
+-familiarization of c#
+-the system only recognizing one string in the regex counter
+-when declaring a placeholder object, add new or else nahahawak yung original graph
+-application of fifo at the end
+-used regex to make page-reference string... so had to do the random shit
+>>>>>>> parent of 93df240 (ver beta)
